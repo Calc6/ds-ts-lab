@@ -4,6 +4,21 @@ interface Friend {
     age: number
 }
 
+interface ColleagueHistory {
+  current: Colleague[],
+  former: Colleague[]
+}
+
+
+interface Colleague {
+    name: string;
+    department: string;
+    contact:{
+        email: string;
+        extension: number;
+    };
+}
+
 
 const Shane = {
   name: "Paul Fleming",
@@ -47,7 +62,7 @@ const colleague3 = {
     extension: 125,
   },
 };
-const colleagues = {
+const colleagues : ColleagueHistory = {
   current: [colleague1, colleague2, colleague3],
   former: [],
 };
