@@ -6,6 +6,8 @@ function older(f: Friend) : string {
      return `${f.name} is now ${f.age}` 
 }
 
+console.log(older(friends[0]))
+
 function allOlder(Friend: Friend[]): string[]{
      return friends.map(f => {
           f.age += 1;
@@ -13,8 +15,10 @@ function allOlder(Friend: Friend[]): string[]{
      });
 }
 
+console.log(allOlder(friends))
+
 // Find the colleague with the highest extension number.
-function highestExtension(cs: Colleague[]): Colleague {
+function highestExtension(cs: Colleague[]) { // Inferred retun type
   const result = cs.sort(
     (c1, c2) => c1.contact.extension - c2.contact.extension
   );
@@ -23,12 +27,12 @@ function highestExtension(cs: Colleague[]): Colleague {
 console.log(highestExtension(colleagues.current));
 
 function addColleague(
-    addColl: Colleague[],
+    cs: Colleague[],
     name: string,
     department: string,
     email: string
 ): void {
-    const highest = highestExtension(addColl);
+    const highest = highestExtension(cs);
     const newColleague: Colleague = {
         name,
         department,
@@ -37,14 +41,12 @@ function addColleague(
             extension: highest.contact.extension + 1,
         },
     };
-    addColl.push(newColleague);
+    cs.push(newColleague);
 }
 
 addColleague(colleagues.current, "Sheild O Connell", "HR", "soc@here.com");
 console.log(colleagues.current.filter((c) => c.name === "Sheild O Connell"));
 
-console.log(older(friends[0]))
-console.log(allOlder(friends))
 
 
 
