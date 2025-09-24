@@ -6,6 +6,45 @@ function older(f: Friend) : string {
      return `${f.name} is now ${f.age}` 
 }
 
+function allOlder(Friend: Friend[]): string[]{
+     return friends.map(f => {
+          f.age += 1;
+          return `${f.name} is now ${f.age}`;
+     });
+}
+
+// Find the colleague with the highest extension number.
+function highestExtension(cs: Colleague[]): Colleague {
+  const result = cs.sort(
+    (c1, c2) => c1.contact.extension - c2.contact.extension
+  );
+  return result[cs.length - 1];
+}
+console.log(highestExtension(colleagues.current));
+
+function addColleague(
+    addColl: Colleague[],
+    name: string,
+    department: string,
+    email: string
+): void {
+    const highest = highestExtension(addColl);
+    const newColleague: Colleague = {
+        name,
+        department,
+        contact: {
+            email,
+            extension: highest.contact.extension + 1,
+        },
+    };
+    addColl.push(newColleague);
+}
+
+addColleague(colleagues.current, "Sheild O Connell", "HR", "soc@here.com");
+console.log(colleagues.current.filter((c) => c.name === "Sheild O Connell"));
+
 console.log(older(friends[0]))
+console.log(allOlder(friends))
+
 
 
